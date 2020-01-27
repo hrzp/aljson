@@ -1,15 +1,8 @@
 from sqlalchemy.orm.collections import InstrumentedList
-import json
 
 
 class BaseMixin:
     caller_stack = list()
-
-    def __init__(self):
-        '''
-            For better naming convention used both keywords
-        '''
-        self.to_json = self.to_dict
 
     def extract_relations(self):
         return self.__mapper__.relationships.keys()
@@ -32,7 +25,7 @@ class BaseMixin:
     def convert_instrumented_list(self, items):
         result = list()
         for item in items:
-            result.append(item.json(self.caller_stack))
+            result.append(item.to_json(self.caller_stack))
         return result
 
     def detect_class_name(self, item):
@@ -52,13 +45,13 @@ class BaseMixin:
             if type(obj) == InstrumentedList:
                 result[relation] = self.convert_instrumented_list(obj)
                 continue
-            result[relation] = obj.json(self.caller_stack)
+            result[relation] = obj.to_json(self.caller_stack)
 
         return result
 
-    def to_dict(self, caller_stack=None):
+    def to_json(self, caller_stack=None):
         '''
-            Convert a SqlAlchemy query object to a dict
+            Convert a SqlAlchemy query object to a dict(json)
         '''
         self.caller_stack = [] if not caller_stack else caller_stack
         final_obj = dict()
