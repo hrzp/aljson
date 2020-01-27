@@ -34,7 +34,7 @@ Full example
     from sqlalchemy.orm import sessionmaker, relationship, backref
     from sqlalchemy.ext.declarative import declarative_base
     from aljson import BaseMixin
-    mport sqlalchemy as sa
+    import sqlalchemy as sa
 
     Base = declarative_base()
 
