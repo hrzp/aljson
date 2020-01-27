@@ -1,3 +1,5 @@
+Convert a SqlAlchemy query object to a dict(json)
+
 Install
 =======
 
