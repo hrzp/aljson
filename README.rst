@@ -17,9 +17,9 @@ Usage
 
     # The Sqlalchemy model
     class Parent(Base, BaseMixin):
-    __tablename__ = 'parent'
-    id = sa.Column(sa.Integer, primary_key=True, unique=True)
-    name = sa.Column(sa.String(64))
+        __tablename__ = 'parent'
+        id = sa.Column(sa.Integer, primary_key=True, unique=True)
+        name = sa.Column(sa.String(64))
 
     # query Parent model
 
